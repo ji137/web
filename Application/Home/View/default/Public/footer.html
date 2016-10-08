@@ -1,0 +1,20 @@
+
+    <!-- 底部
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+      <a href="./uploads/picture/HLWJYXKZ.jpg" target="_blank">江苏省食品药品监督管理局批准经营性网站：苏-经营性-2015-0006
+			</a>
+			<br>
+        <a href="http://www.miibeian.gov.cn" target="_blank">工业和信息化部网站备案：苏ICP备10217328号-1</a>
+          <p> &copy 2016 <if condition="date('Y') gt 2016"><php> echo '-'.date(Y);</php> </if>  <strong><a href="http://www.enhwa.com" target="_blank">江苏恩华和润医药有限公司</a></strong> </p>
+      </div>
+    </footer>
+
+<include file="Public/var"/>
+<block name="script"></block> <!-- 用于加载js代码 -->
+<!-- 页面footer钩子，一般用于加载插件JS文件和JS代码 -->
+{:hook('pageFooter', 'widget')}
+<div class="hidden"><!-- 用于加载统计代码等隐藏元素 -->
+	<block name="hidden"></block>
+</div>

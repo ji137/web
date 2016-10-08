@@ -1,0 +1,42 @@
+<extend name="Public/base" />
+<block name="body">
+	<!-- 标题栏 -->
+	<div class="span2">
+	<div class="columns-mod">
+		<div class="hd cf">
+			<h3>基本信息</h3>
+			<div class="title-opt">
+			</div>
+		</div>
+		<div class="bd" >
+			<div class="sys-info">
+				<table>
+					<tr>
+						<th style="width:10%">客商名称</th>
+						<td>{$info.nickname}</td>
+					</tr>
+					<tr>
+						<th  style="width:10%">注册时间:</th>
+						<td>{$info.time_begin}</td>
+					</tr>
+					<tr>
+						<th  style="width:10%">截至时间</th>
+						<td>{$info.time_end}</td>
+					</tr>
+					<tr>
+						<th  style="width:10%">联系人</th>
+						<td>{$info.contact}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</block>
+
+<block name="script">
+<script type="text/javascript" charset="utf-8">
+    //导航高亮
+    highlight_subnav('{:U('AuthManager/index')}');
+</script>
+</block>

@@ -1,0 +1,45 @@
+<extend name="Public/base" />
+<block name="body">
+	<!-- 标题栏 -->
+	<div class="span2">
+	<div class="columns-mod">
+		<div class="hd cf">
+			<h3>基本信息</h3>
+			<div class="title-opt">
+			</div>
+		</div>
+		<div class="bd" >
+			<div class="sys-info">
+				<table>
+					<tr>
+						<th style="width:10%">客商资料</th>
+						<td>{$supcount}</td>
+					</tr>
+					<tr>
+						<th  style="width:10%">质量报告单</th>
+						<td>{$reportcount}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</block>
+
+<block name="script">
+
+
+<script type="text/javascript" charset="utf-8">
+
+  $('.sup_add').click(function(){
+	var url = $(this).attr('url');
+	if(url != undefined && url != ''){
+		window.location.href = url;
+	}
+   });
+
+ 
+    //导航高亮
+    highlight_subnav('{:U('Pictures/index')}');
+</script>
+</block>

@@ -1,0 +1,234 @@
+<extend name="Public/base" />
+
+   
+
+<block name="body">
+	<!-- 标题栏 -->
+	<div class="main-title">
+		<h2>
+		   入库记录列表({$_total})
+		</h2>
+	</div>
+
+
+   <div class="cf">
+		<div class="fl">
+			<div class="btn-group">
+			   <div class="tools auth-botton">
+                  <button url="{:U('Business/StockinExport','sp='.I('sp').'&cd='.I('cd').'&bdt='.I('bdt').'&edt='.I('edt'),false)}" id="export" class="btn ajax-get" target-form="ids">导 出</button>
+                 {$findinfo} 
+              </div>
+
+			</div>
+	     </div>		
+	
+		<!-- 高级搜索 -->
+		<div class="search-form fr cf">
+			<div class="sleft">
+				
+				<input type="text" name="title" class="search-input" value="{:I('title')}" placeholder="请输入商品名称">
+				<a class="sch-btn" href="javascript:;" id="search" url="{:U('business/stockin')}"><i class="btn-search"></i></a>
+			</div>
+            <div class="btn-group-click adv-sch-pannel fl">
+                <button class="btn">高 级<i class="btn-arrowdown"></i></button>
+                <div class="dropdown cf">
+                	<div class="row" style="width:400px;">
+                		<label>商品名称：</label>
+                		<input type="text" name="sp" id="sp" class="text input-2x" value="{:I('sp')}" placeholder="请输入商品名称或简码">
+                	    <br />
+                	    <br />
+                		<label>生产企业：</label>
+                		<input type="text" name="cd" id="cd" class="text input-2x" value="{:I('cd')}" placeholder="请输入生产企业或简码">
+                		<br />
+                		<br />
+                		<label>查询时间：</label>
+                		<input type="text" id="bdt" name="bdt" class="text input-2x" value="{:I('bdt')}" placeholder="起始时间" /> -
+                		<input type="text" id="edt" name="edt" class="text input-2x" value="{:I('edt')}" placeholder="结束时间" />
+             	        <br />
+                        <button style="margin:20px 74px" class="btn find">查询</button> 
+                	</div>
+                   
+                
+                </div>
+            </div>
+		</div>
+	</div>
+	
+	<!-- 数据列表 -->
+	<div class="data-table table-striped">
+	<table class="">
+    <thead>
+        <tr>
+	
+		<th class="">入库日期</th>
+		<th class="">商品名称</th>
+		<th class="">生产企业</th>
+		<th class="">规格</th>
+		<th class="">单位</th>
+		<th class="">批号</th>
+		<th class="">数量</th>
+		</tr>
+    </thead>
+    <tbody>
+		<notempty name="_list">
+		<volist name="_list" id="vo">
+		 <tr>
+		  <td>{$vo.rq}</td>
+		  <td>{$vo.spmch}</td>
+		  <td>{$vo.shpchd}</td>
+		  <td>{$vo.shpgg}</td>
+		  <td>{$vo.dw}</td>
+		  <td>{$vo.pihao}</td>
+		  <td align="right">{$vo.sl|number_format=###,0,'',''}</td>
+		 </tr>  
+		</volist>
+		<else/>
+		<td colspan="7" class="text-center"> aOh! 暂时还没有内容! </td>
+		</notempty>
+	</tbody>
+    </table>
+
+	</div>
+    <div class="page">
+        {$_page}
+        
+    </div>
+    
+      <!--  
+   <div style="margin-top:20px">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-6893046064413534"
+     data-ad-slot="3672352233"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+ -->
+
+           
+    
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+$(function(){
+	
+	
+	$(".clearfind").click(function(){
+		$('#sp').val('');
+		$('#cd').val('');
+		$('#bdt').val('');
+		$('#edt').val('');
+		$("#search").click();	
+	});
+	
+	$("#export").click(function(){
+		if(confirm("确定要导出吗？")){
+	    var query  = $('.search-form').find('input').serialize();
+	 	var url = $(this).attr('url');
+	        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+	        query = query.replace(/^&/g,''); 
+	        
+	       if( url.indexOf('?')>0 ){
+	            url += '&' + query;
+	        }else{
+	            url += '?' + query;
+	        }    
+	       
+		$.get(url,'',function(data){
+		  if (data instanceof Object) {
+		    if (data.status) {
+			 var filename = data.filename;
+		 	 var $a = $("<a>");
+		     $a.attr("href",data.file);
+		     $("body").append($a);
+		     $a.attr("download",filename);
+		     $a[0].click();
+		     $a.remove();
+		    }
+		  }
+		  else{
+			  $("#top-alert").attr('class','fixed alter alert-error').show();
+	          $(".alert-content").html('导出出错！');
+	          setTimeout(function(){
+			    	$('#top-alert' ).fadeOut();
+			    },3000); 
+			 
+		  }
+		   
+		  });
+		  }
+		});
+	
+	//搜索功能
+	$("#search").click(function(){
+		var url = $(this).attr('url');
+		var status = $("#sch-sort-txt").attr("data");
+        var query  = $('.search-form').find('input').serialize();
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,'');
+		if(status != ''){
+			query = "&" + query;
+        }
+        if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }
+		window.location.href = url;
+	});
+
+	/* 状态搜索子菜单 */
+	$(".search-form").find(".drop-down").hover(function(){
+		$("#sub-sch-menu").removeClass("hidden");
+	},function(){
+		$("#sub-sch-menu").addClass("hidden");
+	});
+	$("#sub-sch-menu li").find("a").each(function(){
+		$(this).click(function(){
+			var text = $(this).text();
+			$("#sch-sort-txt").text(text).attr("data",$(this).attr("value"));
+			$("#sub-sch-menu").addClass("hidden");
+		})
+	});
+	
+    //回车自动提交
+    $('.search-form').find('input').keyup(function(event){
+        if(event.keyCode===13){
+            $("#search").click();
+        }
+    });
+    
+    $('.find').click(function(){
+    	$("#search").click();
+    });
+
+    $('#bdt').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+	    minView:2,
+	    autoclose:true
+    });
+
+    $('#edt').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+	    minView:2,
+	    autoclose:true
+    });
+})
+</script>
+
+<script type="text/javascript" charset="utf-8">
+    //导航高亮
+    highlight_subnav('{:U('Business/stockin')}');
+</script>
+</block>

@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+
+
+.supplyenter {
+  margin-bottom:20px;
+}
+
+.supplyenter .btn {
+    color: #fff;
+    background-color: #4bbd00;
+}
+
+.supplyenter .btn {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 6px 20px;
+    font-size: 22px;
+    line-height: 35px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 0 none;
+    background: #4bbd00;
+}	
+
+
+.certimg .btn {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 6px 20px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 0 none;
+    background: #4bbd00;
+}	
+
+.certimg input
+{
+ margin-bottom: 0;
+}
+
+
+.contact ul {
+	margin:0;
+	padding:0;
+}
+
+.contact {
+  font-size:16px;
+  padding:10px;
+  margin-top:50px;
+  border-left:1px #ccc solid;
+}
+
+.contact li {
+  list-style:none;
+  line-height:200%
+}

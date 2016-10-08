@@ -1,0 +1,62 @@
+<extend name="Base/common"/>
+
+<block name="header">
+   <div class="flexslider"> 
+      <ul class="slides"> 
+        <li><img src="./uploads/picture/pic01.jpg" /></li> 
+        <li><img src="./uploads/picture/pic11.jpg" /></li> 
+      </ul> 
+   </div>      
+</block>
+
+<block name="side">
+<!-- 左侧 nav
+================================================== -->
+    <div class="span3 bs-docs-sidebar">
+       
+        <block name="publish">
+         <div class="contact"> 
+          <div class="supplyenter">
+             <a class="btn" href="{:U('/admin/index')}" >供货商入口</a>
+          </div>
+      
+          <ul>
+          <volist name="maincontact" id="value">
+             <li>{$value}</li>
+           </volist>
+          </ul>
+          </div>
+        </block>
+        <ul class="nav nav-list bs-docs-sidenav" style="display:none">
+            {:W('Category/lists', array(1, true))}
+        </ul>
+    </div>
+</block>
+
+<block name="body">
+    <div class="span9">
+        <!-- Contents
+        ================================================== -->
+        <section id="contents">
+            <article:list name="article" category="1" child="true">
+                <div class="">
+                    <h4><a href="{:U('Article/detail?id='.$article['id'])}">{$article.title}</a></h4>
+                </div>
+                <div>
+                    <p class="lead">{$article.description}</p>
+                </div>
+                <div>
+                    <span><a href="{:U('Article/detail?id='.$article['id'])}">查看全文</a></span>
+                    <span class="pull-right">
+                        <span class="author">{$article.uid|get_username}</span>
+                        <span>于 {$article.create_time|date='Y-m-d H:i',###}</span> 发表在 <span>
+                        <a href="{:U('Article/lists?category='.get_category_name($article['category_id']))}">{$article.category_id|get_category_title}</a></span> ( 阅读：{$article.view} )
+                    </span>
+                </div>
+                <hr/>
+            </article:list>
+
+        </section>
+    </div>
+</block>
+

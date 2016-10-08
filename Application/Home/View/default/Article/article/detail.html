@@ -1,0 +1,46 @@
+<extend name="Base/common"/>
+
+<block name="header">
+    <header class="subhead" id="overview">
+		<div class="container">
+			
+		</div>
+	</header>
+</block>
+
+<block name="body">
+
+    <div class="span9 main-content" style="padding-top:45px;">
+         
+        <!-- Contents
+        ================================================== -->
+        <div class="" style="margin-top:30px;text-align:center;" >
+		 <h3 style="text-align:center;">
+		 <a  href="{:U('Article/detail?id='.$data['id'])}">{$info.title}</a>
+		</h3>	
+		        <span style="margin-top:30px" class="" >
+					<span class="author">{$info.uid|get_username}</span>
+					<span> 发表于 {$info.create_time|date='Y-m-d H:i',###}</span>
+				</span>
+			
+		</div>
+				
+        <section id="contents">{$info.content}</section>
+     
+        <hr/>   
+      	<p>
+				
+				<div class="" style="text-align:center;">
+					<article:prev name="prev" info="info" >
+                        <a href="{:U('?id='.$prev['id'])}" style="padding:10px;">上一篇</a>
+                    </article:prev>
+                    <article:next name="next" info="info">
+                        <a href="{:U('?id='.$next['id'])}"  style="padding:10px;">下一篇</a>
+                    </article:next>
+				</div>
+	  </p>
+   
+     
+       
+    </div>
+</block>

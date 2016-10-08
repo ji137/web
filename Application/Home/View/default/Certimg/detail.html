@@ -1,0 +1,45 @@
+<extend name="Base/common"/>
+
+<block name="header">
+   <!--   <header class="jumbotron subhead" id="overview">
+        <div class="container">
+            <h2>源自相同起点，演绎不同精彩！</h2>
+            <p class="lead"></p>
+        </div>
+    </header>
+    -->
+</block>
+
+<block name="body">
+    <div class="" style="margin-top:50px;">
+    
+      {$response.filename}
+      {$response.file}
+    
+    
+        <!-- Contents
+        ================================================== -->
+      <img src="{$response.file}" width="500px" height="800px" />  
+   </div>  
+     
+<script type="text/javascript">
+$(function(){
+	
+	$('.find').click(function(){
+		var query  = $('.search-form').find('input').serialize();
+		var url = $(this).attr('url');
+        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+        query = query.replace(/^&/g,''); 
+        
+       if( url.indexOf('?')>0 ){
+            url += '&' + query;
+        }else{
+            url += '?' + query;
+        }   
+      
+		window.location.href =url;
+	});
+ })
+</script>     
+     
+</block>
