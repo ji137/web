@@ -8,7 +8,6 @@
 // +----------------------------------------------------------------------
 
 namespace Home\Controller;
-use OT\DataDictionary;
 
 /**
  * 前台首页控制器
@@ -18,20 +17,22 @@ class IndexController extends HomeController {
 
 	//系统首页
     public function index(){
-
-        $category = D('Category')->getTree();
-        $lists    = D('Document')->lists(null);
-        
-        $main_contact =  C('MAIN_CONTACT');
-
-        $this->assign('category',$category);//栏目
-        $this->assign('maincontact',$main_contact);//栏目
-        
-        $this->assign('lists',$lists);//列表
-        $this->assign('page',D('Document')->page);//分页
-
-                 
         $this->display();
     }
+     
+    public function oneday(){
+
+        $this->display();
+    }  
+
+     public function threeday(){
+
+        $this->display();
+    }  
+
+     public function sevenday(){
+
+        $this->display();
+    }  
 
 }
