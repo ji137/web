@@ -38,12 +38,23 @@ return array(
     /* 数据库配置 */
     'DB_TYPE'   => 'mysql', // 数据库类型
     'DB_HOST'   => '127.0.0.1', // 服务器地址
-    'DB_NAME'   => 'enhwa', // 数据库名
+    'DB_NAME'   => 'ji137', // 数据库名
     'DB_USER'   => 'root', // 用户名
     'DB_PWD'    => 'azsOFT',  // 密码
     'DB_PORT'   => '3306', // 端口
-    'DB_PREFIX' => 'eh_', // 数据库表前缀
+    'DB_PREFIX' => '', // 数据库表前缀
 
     /* 文档模型配置 (文档模型核心配置，请勿更改) */
     'DOCUMENT_MODEL_TYPE' => array(2 => '主题', 1 => '目录', 3 => '段落'),
+
+
+    'MAIL_HOST' =>'smtp.qq.com',//smtp服务器的名称
+    'MAIL_SMTPAUTH' =>TRUE, //启用smtp认证
+    'MAIL_USERNAME' =>'1229991003@qq.com',//你的邮箱名
+    'MAIL_FROM' =>'1229991003@qq.com',//发件人地址
+    'MAIL_FROMNAME'=>'JI137',//发件人姓名
+    'MAIL_PASSWORD' =>'jondxzeeavxmgcda',//邮箱密码
+    'MAIL_CHARSET' =>'utf-8',//设置邮件编码
+    'MAIL_ISHTML' =>TRUE, // 是否HTML格式邮件
+    
 );

@@ -2,9 +2,58 @@
 
 <block name="header"></block>
 
-<block name="body">
+<block name="right">
   <div class="title">
   	 <p class="word">抓紧复习一下？<span>温古而知新......</span></p> 
      <hr class="line"></hr> 
   </div>
+
+      <notempty name="list">
+      <div class="contents list">
+       <ul>
+       <volist name="list" id="vo">
+          <li><a href="{:U('index/threeday',array('id'=>$vo['id']),false)}">{$vo.adddate}
+            <span class="info"><if condition="$vo['flag'] lt -3"> <b>时间错过了，重新开始吧</b> <else/>时间刚刚好，赶紧复习吧</if></span> 
+            </a> 
+          </li>
+       </volist>
+       </ul>
+       </div>
+       <else/>
+       <notempty name="detail">
+        <div class="contents">
+        <div class="remember_content"> 
+          {$detail[0]['content']}  
+        </div>
+         <div class="operation">
+           <input type="button" class="btn save" name="submit" id="{$detail[0][id]}" value="OK" /> 
+         </div>
+         </div>
+       <else/> 
+      <div class="contents">
+       <div class="finished">真棒！完成今天的任务了。</div>  
+      </div>
+      </notempty>
+    </notempty>   
+
+
+</block>
+
+<block name="script">
+ <notempty name="detail">
+    <script type="text/javascript">
+        $(function () {
+            $('.save').click(function(){
+              var url = '{:U('data/update')}';
+              var id= $(this).attr('id');
+              var _data = '&id='+id+'&status=7';
+              $.post(url,_data,function(data){
+                if (data===1){
+                   window.location = "{:U('Index/threeday')}";
+                 }
+              });
+            });
+        });
+    </script>
+ </notempty>
 </block>

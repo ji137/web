@@ -1,62 +1,52 @@
 <extend name="Base/common"/>
+<block name="style">
+ <link rel="stylesheet" type="text/css" href="__STATIC__/wangEditor/css/wangEditor.min.css">	
+</block>
+<block name="header">
+	
+</block>
 
-<block name="header"></block>
-
-<block name="body">
+<block name="right">
+ <div class="bd">
   <div class="title">
   	 <p class="word">您想记点什么？<span>比如：英语单词，数学公式，一段话......</span></p> 
      <hr class="line"></hr> 
   </div>
 
-  <div class="content">
-    <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script> 
-    <div class="controls">
+  <div class="contents">
+    <div class="remember" id="remember"></div>
+    <div class="operation">
+       <input type="button" class="btn save" name="submit" id="" value="OK" />
+      <span> <a href="javascript:void();">清空</a></span>　　 
+    </div>
 
-		<input type="file" id="upload_picture">
-		<input type="hidden" name="img_path" id="img_path" value="">
-								<script type="text/javascript">
-								//上传图片
-							    /* 初始化上传插件 */
-								$("#upload_picture").uploadify({
-							        "height"          : 30,
-							        "swf"             : "__STATIC__/uploadify/uploadify.swf",
-							        "fileObjName"     : "download",
-							        "buttonText"      : "<i class='icon_msg_sender'></i>图片",
-							        "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
-							        "width"           : 80,
-							        'removeTimeout'	  : 1,
-							        'fileTypeExts'	  : '*.jpg; *.png; *.gif;',
-							        "onUploadSuccess" : uploadPicture,
-							        'onFallback' : function() {
-							            alert('未检测到兼容版本的Flash.');
-							        }
-							    });
-								function uploadPicture(file, data){
-							    	var data = $.parseJSON(data);
-							    	var src = '';
-							    	alert(data.status);
-							        if(data.status){							        	
-							        	src = data.url || '__ROOT__' + data.path
-							        	$("#img_path").val(src);
-							        	$(".remember").html('<img src="' + src + '"/>');
-							        } else {
-							        	updateAlert(data.info);
-							        	setTimeout(function(){
-							                $('#top-alert').find('button').click();
-							                $(that).removeClass('disabled').prop('disabled',false);
-							            },1500);
-							        }
-							    }
-								</script>
-					</div>
-
-                    <div  contentEditable=true class="remember"></div>
-
-                    <div class="operation">
-                       <input type="button" class="btn" name="submit" id="" value="OK" />
-                       <span> <a href="{:U('index/oneday/clear')}">清空</a></span>　　 
-                    </div>
-			
   </div>
 
+  </div>
+
+</block>
+
+<block name="script">
+ <script type="text/javascript" src="__STATIC__/wangEditor/js/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var editor = new wangEditor('remember');
+            editor.config.uploadImgUrl = '{:U('File/w_upload')}';
+            editor.create();
+        
+            $('.save').click(function(){
+              var url = '{:U('data/save')}';
+              //var cnt_data = '&cnt='+editor.$txt.html();
+              var cnt_data={'cnt':editor.$txt.html()};
+              console.log(cnt_data);
+              $.post(url,cnt_data,function(data){
+                  alert('保存成功'); 
+                  window.location.reload();
+              });
+            });
+
+        });
+
+
+    </script>
 </block>

@@ -1,17 +1,36 @@
 @CHARSET "UTF-8";
 
 
+.sidebar .inner
+{
+  overflow:hidden; 
+  zoom:1;
+}
+
+
 .sidebar .inner .left{
     position: fixed;
-    left: 0;
+    left: 0; 
+    top:0;
+    overflow:hidden; 
+    float:left;
+    height:100%;
     padding-top: 20px;
     width: 100px;
-    height: 55%;
     background:#0099cc;
     z-index: 2;
     font-size: 16px;
 
 }
+
+.sidebar .inner .right
+{
+
+ overflow:hidden; 
+ margin-right:20px;
+ margin-left:120px;
+}
+
 
 .brand img{
   height:60px;
@@ -23,6 +42,10 @@
   margin-top:15px;
   margin-left:0;
 
+}
+
+ul li{
+ list-style-type:none;
 }
 
 .nav ul li{
@@ -51,14 +74,14 @@
 
 
 .sidebar .bottom{
-  position:absolute;
-  left:0;
-  bottom:0;
+  
+  bottom:10px;
   width:100px;
-  height:50%;
   background:#0099cc; 
   padding-left:0;
   margin-left:0;
+  padding-bottom:20px;
+  z-index: 1;
 }
 
 .sidebar .bottom ul{
@@ -80,10 +103,9 @@
 
 }
 
-
 .title{
- margin-left:120px;
  margin-right:20px;
+ margin-bottom:20px;
  padding-top:15px;
  min-width: 500px;
 }
@@ -111,21 +133,13 @@
 }
 
 /* content */
-.content {
-  margin-top:15px;
-  margin-left:120px;
-  margin-right:40px;
-  min-width: 500px;
-  
-} 
 
-.remember {
+.remember{
  margin-left:4px;  
  width:100%;
  min-height:300px;
  overflow-y:auto;
  overflow-x:visible;
- border: 1px #ccc solid;
  padding-top:15px;
  padding-left:10px;
  font-size:16px;
@@ -221,4 +235,43 @@
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
+}
+
+/* 列表内容 */
+
+
+.list .info{
+  margin-left:10px;
+}
+
+.list .info b{
+  color:red;
+}
+
+
+.list ul li{
+ line-height:200%;
+ font-size:16px;  
+}
+
+.contents .remember_content {
+ margin-left:4px;  
+ min-height:300px;
+ overflow-y:auto;
+ overflow-x:visible;
+ padding-top:15px;
+ padding-left:10px;
+ font-size:16px;
+ border:1px #ccc solid;
+}
+
+
+.finished{
+  padding-top:20px;
+  padding-left:20px;
+}
+
+
+.subcontent p{
+ text-indent: 2em;
 }

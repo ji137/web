@@ -5,12 +5,14 @@
     $(function(){
         $(window).resize(function(){
             $("#main-container").css("min-height", $(window).height() - 343);
+               var h= $(window).height();
+                    $('.inner').height(h);
         }).resize();
          
         $('.{$action}').addClass('active'); 
-
     });
 
+  
 
 
 </script>

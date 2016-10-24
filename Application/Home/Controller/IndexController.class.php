@@ -26,12 +26,46 @@ class IndexController extends HomeController {
     }  
 
      public function threeday(){
-
+        $id= I('id');
+        if (empty($id)){
+          $map['status']=3;
+          $map['datediff(now(),from_unixtime(addtime))']=array('eq',3); 
+          $list= M('remembers')->field('id,from_unixtime(addtime) as adddate,datediff(now(),from_unixtime(addtime)) as flag')
+          ->where($map)->select();  
+          $this->assign('list',$list);  
+        }
+        else
+        {
+          $map=array();
+          $map['id']=$id;
+         //$map['datediff(from_unixtime(addtime),now())']=array('lt',0); 
+          $detail= M('remembers')->field('id,content')
+          ->where($map)->select();  
+          $this->assign('detail',$detail); 
+        } 
+   
         $this->display();
     }  
 
      public function sevenday(){
-
+        $id= I('id');
+        if (empty($id)){
+          $map['status']=7;
+          $map['datediff(now(),from_unixtime(addtime))']=array('eq',7); 
+          $list= M('remembers')->field('id,from_unixtime(addtime) as adddate,datediff(now(),from_unixtime(addtime)) as flag')
+          ->where($map)->select();  
+          $this->assign('list',$list);  
+        }
+        else
+        {
+          $map=array();
+          $map['id']=$id;
+         //$map['datediff(from_unixtime(addtime),now())']=array('lt',0); 
+          $detail= M('remembers')->field('id,content')
+          ->where($map)->select();  
+          $this->assign('detail',$detail); 
+        } 
+   
         $this->display();
     }  
 
